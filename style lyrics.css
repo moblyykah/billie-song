@@ -6,13 +6,19 @@ body {
   padding: 0;
   margin: 0;
   background-color: black;
-  background-image: url(billie-eilish-5120x3000-12396.jpg);
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)),
+    url(billie-eilish-5120x3000-12396.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   font-family: "Poppins", Arial, sans-serif;
   color: white;
   min-height: 100vh;
+}
+::selection {
+  background: #c98a0d;
+  color: black;
 }
 
 .cont {
@@ -41,6 +47,11 @@ img {
   height: 180px;
   object-fit: cover;
   border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+  transition: transform 0.4s ease;
+}
+img:hover {
+  transform: scale(1.04);
 }
 
 /* اسم الأغنية والفنانة */
@@ -78,6 +89,7 @@ audio {
   height: auto;
   width: 500px;
   border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 /* كلمات الأغنية */
@@ -96,6 +108,15 @@ audio {
   color: #a0a0a0;
   line-height: 2;
   scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #c98a0d transparent;
+  -webkit-mask-image: linear-gradient(
+    transparent,
+    #000 12%,
+    #000 88%,
+    transparent
+  );
+  mask-image: linear-gradient(transparent, #000 12%, #000 88%, transparent);
 }
 
 #lyrics span {
@@ -107,8 +128,8 @@ audio {
 #lyrics span.active {
   opacity: 1;
   color: #c98a0d;
-  font-size: 1.5em;
-  font-weight: 600;
+  font-size: 1.2em;
+  text-shadow: 0 0 12px rgba(201, 138, 13, 0.6);
 }
 
 @media (max-width: 768px) {
