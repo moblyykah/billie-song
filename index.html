@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="pics/WhatsApp Image 2026-04-17 at 4.46.49 PM.jpeg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style lyrics.css" />
+    <title>my song lyrics</title>
+  </head>
+  <body>
+    <div class="cont">
+      <div class="music-card">
+        <img
+          src="birds-of-feather-pic.jpg"
+          height="200"
+          width="200"
+          alt="birds of feather pic"
+        />
+        <div id="song-info">
+          <p>
+            Birds of feather <br />
+            Song by billie eilish
+          </p>
+          <audio controls>
+            <source
+              src="Billie_Eilish_-_BIRDS_OF_A_FEATHER__Official_Music_Video_(256k).mp3"
+              type="audio/mpeg"
+            />
+          </audio>
+        </div>
+      </div>
+      <br /><br />
+    </div>
+    <br />
+    <hr />
+    <br />
+    <div class="container">
+      <video class="myvideo" controls>
+        <source
+          src="Billie_Eilish_-_BIRDS_OF_A_FEATHER__Official_Music_Video_(720p).mp4"
+          type="video/mp4"
+        />
+        <track
+          id="lyricsTrack"
+          kind="metadata"
+          src="Billie-Eilish-BIRDS-OF-A-FEATHER-(Official-Lyric-Video).vtt"
+          default
+        />
+      </video>
+      <hr />
+      <div id="lyrics"></div>
+    </div>
+    <script>
+      const video = document.getElementById("myVideo");
+      const lyricsEl = document.getElementById("lyrics");
+      const track = document.getElementById("lyricsTrack").track;
+
+      track.mode = "hidden"; // يخلي المتصفح يحمّل الملف من غير ما يعرضه فوق الفيديو
+
+      let cues = [];
+      const spans = [];
+
+      document.getElementById("lyricsTrack").addEventListener("load", () => {
+        cues = Array.from(track.cues);
+
+        cues.forEach((cue) => {
+          const span = document.createElement("span");
+          span.textContent = cue.text;
+          lyricsEl.appendChild(span);
+          lyricsEl.appendChild(document.createElement("br"));
+          spans.push(span);
+
+          cue.onenter = () => {
+            span.classList.add("active");
+            span.scrollIntoView({ behavior: "smooth", block: "center" });
+          };
+          cue.onexit = () => span.classList.remove("active");
+        });
+      });
+
+      video.addEventListener("pause", () =>
+        spans.forEach((s) => s.classList.remove("active")),
+      );
+    </script>
+  </body>
+</html>
